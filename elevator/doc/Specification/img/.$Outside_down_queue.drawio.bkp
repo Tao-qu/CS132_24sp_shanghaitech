@@ -1,0 +1,453 @@
+<mxfile host="Electron" modified="2024-06-12T16:06:37.950Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.2.5 Chrome/120.0.6099.109 Electron/28.1.0 Safari/537.36" etag="M3SRdY5vf8ywSTN9zyAO" version="24.2.5" type="device">
+  <diagram name="Page-1" id="2YBvvXClWsGukQMizWep">
+    <mxGraphModel dx="1884" dy="557" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="aM9ryv3xv72pqoxQDRHE-1" value=":dispatcher" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=0;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};" parent="1" vertex="1">
+          <mxGeometry x="400" y="40" width="100" height="2400" as="geometry" />
+        </mxCell>
+        <mxCell id="3tCN6weYvRRTGFFSuD-e-3" value="" style="html=1;points=[[0,0,0,0,5],[0,1,0,0,-5],[1,0,0,0,5],[1,1,0,0,-5]];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" parent="aM9ryv3xv72pqoxQDRHE-1" vertex="1">
+          <mxGeometry x="45" y="70" width="10" height="2310" as="geometry" />
+        </mxCell>
+        <mxCell id="E3HLz6WKEP3IaX9j87WI-1" value=":elevators" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=0;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};" parent="1" vertex="1">
+          <mxGeometry x="120" y="40" width="100" height="2400" as="geometry" />
+        </mxCell>
+        <mxCell id="3tCN6weYvRRTGFFSuD-e-2" value="" style="html=1;points=[[0,0,0,0,5],[0,1,0,0,-5],[1,0,0,0,5],[1,1,0,0,-5]];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" parent="E3HLz6WKEP3IaX9j87WI-1" vertex="1">
+          <mxGeometry x="45" y="70" width="10" height="2310" as="geometry" />
+        </mxCell>
+        <mxCell id="faXIZWIeYT5rvHZ5Q_8h-1" value="loop" style="shape=umlFrame;whiteSpace=wrap;html=1;pointerEvents=0;" vertex="1" parent="1">
+          <mxGeometry x="-30" y="160" width="740" height="2240" as="geometry" />
+        </mxCell>
+        <mxCell id="faXIZWIeYT5rvHZ5Q_8h-4" value="the elevator state" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="80" relative="1" as="geometry">
+            <mxPoint x="175" y="200" as="sourcePoint" />
+            <mxPoint x="445" y="200" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="faXIZWIeYT5rvHZ5Q_8h-6" value="[for each request in the outside up queue]" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="123.00206896551742" y="158" as="geometry">
+            <mxPoint x="11" y="18" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="faXIZWIeYT5rvHZ5Q_8h-11" value="check the elevator state" style="html=1;align=left;spacingLeft=2;endArrow=block;rounded=0;edgeStyle=orthogonalEdgeStyle;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="455" y="210" as="sourcePoint" />
+            <Array as="points">
+              <mxPoint x="475" y="240" />
+            </Array>
+            <mxPoint x="455" y="240" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="faXIZWIeYT5rvHZ5Q_8h-12" value="alt" style="shape=umlFrame;whiteSpace=wrap;html=1;pointerEvents=0;" vertex="1" parent="1">
+          <mxGeometry y="260" width="680" height="2120" as="geometry" />
+        </mxCell>
+        <mxCell id="faXIZWIeYT5rvHZ5Q_8h-13" value="[if both the elevators are not idle or up]" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="150.00206896551742" y="260" as="geometry">
+            <mxPoint x="11" y="18" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="faXIZWIeYT5rvHZ5Q_8h-14" value="break" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="445" y="319.9999999999998" as="sourcePoint" />
+            <mxPoint x="175" y="319.9999999999998" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="faXIZWIeYT5rvHZ5Q_8h-15" value="" style="endArrow=none;dashed=1;html=1;rounded=0;entryX=0.998;entryY=0.046;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="faXIZWIeYT5rvHZ5Q_8h-12">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint y="359" as="sourcePoint" />
+            <mxPoint x="320" y="340" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="faXIZWIeYT5rvHZ5Q_8h-16" value="[if one of the elevators is idle or up]" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="100.00206896551742" y="360" as="geometry">
+            <mxPoint x="11" y="18" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="faXIZWIeYT5rvHZ5Q_8h-17" value="set choice to the idle or up elevator" style="html=1;align=left;spacingLeft=2;endArrow=block;rounded=0;edgeStyle=orthogonalEdgeStyle;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="455" y="379" as="sourcePoint" />
+            <Array as="points">
+              <mxPoint x="475" y="409" />
+            </Array>
+            <mxPoint x="455" y="409" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="faXIZWIeYT5rvHZ5Q_8h-19" value="" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="444" y="429.9999999999998" as="sourcePoint" />
+            <mxPoint x="174" y="429.9999999999998" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="faXIZWIeYT5rvHZ5Q_8h-20" value="a request in the outside up queue" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="80" relative="1" as="geometry">
+            <mxPoint x="176" y="469" as="sourcePoint" />
+            <mxPoint x="446" y="469" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="faXIZWIeYT5rvHZ5Q_8h-21" value="alt" style="shape=umlFrame;whiteSpace=wrap;html=1;pointerEvents=0;width=50;height=20;" vertex="1" parent="1">
+          <mxGeometry x="30" y="490" width="620" height="570" as="geometry" />
+        </mxCell>
+        <mxCell id="faXIZWIeYT5rvHZ5Q_8h-22" value="[if &#39;choice&#39; is up]" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="110.00206896551742" y="490" as="geometry">
+            <mxPoint x="11" y="18" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="faXIZWIeYT5rvHZ5Q_8h-23" value="check if the request is higher&amp;nbsp;&lt;div&gt;than or equal to the current floor&lt;/div&gt;" style="html=1;align=center;spacingLeft=2;endArrow=block;rounded=0;edgeStyle=orthogonalEdgeStyle;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry x="0.143" y="85" relative="1" as="geometry">
+            <mxPoint x="455" y="512" as="sourcePoint" />
+            <Array as="points">
+              <mxPoint x="475" y="542" />
+            </Array>
+            <mxPoint x="455" y="542" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="faXIZWIeYT5rvHZ5Q_8h-24" value="alt" style="shape=umlFrame;whiteSpace=wrap;html=1;pointerEvents=0;" vertex="1" parent="1">
+          <mxGeometry x="60" y="560" width="560" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="faXIZWIeYT5rvHZ5Q_8h-25" value="[if yes]" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="140.00206896551742" y="560" as="geometry">
+            <mxPoint x="11" y="18" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="faXIZWIeYT5rvHZ5Q_8h-26" value="" style="endArrow=none;dashed=1;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="60" y="659.5" as="sourcePoint" />
+            <mxPoint x="620" y="660" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="faXIZWIeYT5rvHZ5Q_8h-27" value="[else]" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="110.00206896551742" y="660" as="geometry">
+            <mxPoint x="11" y="18" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="faXIZWIeYT5rvHZ5Q_8h-28" value="" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="444" y="619.9999999999998" as="sourcePoint" />
+            <mxPoint x="174" y="619.9999999999998" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="faXIZWIeYT5rvHZ5Q_8h-32" value="move the request to the elevator_execute_queue" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="faXIZWIeYT5rvHZ5Q_8h-28">
+          <mxGeometry x="-0.1407" relative="1" as="geometry">
+            <mxPoint x="-18" y="-10" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="faXIZWIeYT5rvHZ5Q_8h-29" value="" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="445" y="709.9999999999998" as="sourcePoint" />
+            <mxPoint x="175" y="709.9999999999998" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="faXIZWIeYT5rvHZ5Q_8h-30" value="Text" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="faXIZWIeYT5rvHZ5Q_8h-29">
+          <mxGeometry x="-0.3556" y="3" relative="1" as="geometry">
+            <mxPoint x="-48" y="-13" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="faXIZWIeYT5rvHZ5Q_8h-31" value="continue" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="faXIZWIeYT5rvHZ5Q_8h-29">
+          <mxGeometry x="-0.0148" y="-8" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="faXIZWIeYT5rvHZ5Q_8h-33" value="" style="endArrow=none;dashed=1;html=1;rounded=0;entryX=1.004;entryY=0.534;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="30" y="779" as="sourcePoint" />
+            <mxPoint x="652.48" y="778.72" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="faXIZWIeYT5rvHZ5Q_8h-34" value="[else]" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="70.00206896551742" y="780" as="geometry">
+            <mxPoint x="11" y="18" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="faXIZWIeYT5rvHZ5Q_8h-36" value="check if the request is higher&amp;nbsp;&lt;div&gt;than or equal to the current floor&lt;/div&gt;" style="html=1;align=center;spacingLeft=2;endArrow=block;rounded=0;edgeStyle=orthogonalEdgeStyle;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry x="0.143" y="85" relative="1" as="geometry">
+            <mxPoint x="455" y="810" as="sourcePoint" />
+            <Array as="points">
+              <mxPoint x="475" y="840" />
+            </Array>
+            <mxPoint x="455" y="840" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="faXIZWIeYT5rvHZ5Q_8h-37" value="alt" style="shape=umlFrame;whiteSpace=wrap;html=1;pointerEvents=0;" vertex="1" parent="1">
+          <mxGeometry x="60" y="850" width="560" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="faXIZWIeYT5rvHZ5Q_8h-38" value="[if yes]" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="140.00206896551742" y="850" as="geometry">
+            <mxPoint x="11" y="18" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="faXIZWIeYT5rvHZ5Q_8h-39" value="" style="endArrow=none;dashed=1;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="60" y="949.5" as="sourcePoint" />
+            <mxPoint x="620" y="950" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="faXIZWIeYT5rvHZ5Q_8h-40" value="[else]" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="110.00206896551742" y="950" as="geometry">
+            <mxPoint x="11" y="18" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="faXIZWIeYT5rvHZ5Q_8h-41" value="" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="444" y="909.9999999999998" as="sourcePoint" />
+            <mxPoint x="174" y="909.9999999999998" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="faXIZWIeYT5rvHZ5Q_8h-42" value="change the elevator state to up&lt;div&gt;move the request to the elevator_execute_queue&lt;/div&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="faXIZWIeYT5rvHZ5Q_8h-41">
+          <mxGeometry x="-0.1407" relative="1" as="geometry">
+            <mxPoint x="-18" y="-20" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="faXIZWIeYT5rvHZ5Q_8h-43" value="" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="445" y="999.9999999999998" as="sourcePoint" />
+            <mxPoint x="175" y="999.9999999999998" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="faXIZWIeYT5rvHZ5Q_8h-46" value="change the elevator state to down_up&lt;div&gt;move the request to the elevator_execute_queue&lt;/div&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="310" y="979.9999999999998" as="geometry" />
+        </mxCell>
+        <mxCell id="faXIZWIeYT5rvHZ5Q_8h-47" value="" style="endArrow=none;dashed=1;html=1;rounded=0;entryX=1.005;entryY=0.071;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-3" y="1090" as="sourcePoint" />
+            <mxPoint x="680" y="1090" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="faXIZWIeYT5rvHZ5Q_8h-48" value="[if both of the elevators are idle or up]" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="90.00206896551742" y="1090" as="geometry">
+            <mxPoint x="11" y="18" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="faXIZWIeYT5rvHZ5Q_8h-49" value="set choice to -1" style="html=1;align=left;spacingLeft=2;endArrow=block;rounded=0;edgeStyle=orthogonalEdgeStyle;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="456" y="1120" as="sourcePoint" />
+            <Array as="points">
+              <mxPoint x="476" y="1150" />
+            </Array>
+            <mxPoint x="456" y="1150" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="faXIZWIeYT5rvHZ5Q_8h-50" value="" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="444" y="1169.9999999999998" as="sourcePoint" />
+            <mxPoint x="174" y="1169.9999999999998" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="faXIZWIeYT5rvHZ5Q_8h-51" value="a request in the outside up queue" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="80" relative="1" as="geometry">
+            <mxPoint x="176" y="1209" as="sourcePoint" />
+            <mxPoint x="446" y="1209" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="faXIZWIeYT5rvHZ5Q_8h-52" value="alt" style="shape=umlFrame;whiteSpace=wrap;html=1;pointerEvents=0;width=50;height=20;" vertex="1" parent="1">
+          <mxGeometry x="30" y="1240" width="620" height="650" as="geometry" />
+        </mxCell>
+        <mxCell id="faXIZWIeYT5rvHZ5Q_8h-53" value="check if the request is&amp;nbsp;&lt;div&gt;higher than or equal to&amp;nbsp;&lt;div&gt;the elevators&#39; current floor&amp;nbsp;&lt;/div&gt;&lt;/div&gt;" style="html=1;align=center;spacingLeft=2;endArrow=block;rounded=0;edgeStyle=orthogonalEdgeStyle;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry x="0.1429" y="75" relative="1" as="geometry">
+            <mxPoint x="455" y="1260" as="sourcePoint" />
+            <Array as="points">
+              <mxPoint x="475" y="1290" />
+            </Array>
+            <mxPoint x="455" y="1290" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="faXIZWIeYT5rvHZ5Q_8h-54" value="alt" style="shape=umlFrame;whiteSpace=wrap;html=1;pointerEvents=0;" vertex="1" parent="1">
+          <mxGeometry x="60" y="1310" width="560" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="faXIZWIeYT5rvHZ5Q_8h-56" value="[if both are up]" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="110.00206896551742" y="1234" as="geometry">
+            <mxPoint x="11" y="18" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="faXIZWIeYT5rvHZ5Q_8h-57" value="[if both satisfy]" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="150.00206896551742" y="1310" as="geometry">
+            <mxPoint x="11" y="18" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="faXIZWIeYT5rvHZ5Q_8h-58" value="choice is the one closer&amp;nbsp;&lt;div&gt;to the request floor&lt;/div&gt;" style="html=1;align=center;spacingLeft=2;endArrow=block;rounded=0;edgeStyle=orthogonalEdgeStyle;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry x="0.0857" y="65" relative="1" as="geometry">
+            <mxPoint x="455" y="1332" as="sourcePoint" />
+            <Array as="points">
+              <mxPoint x="475" y="1362" />
+            </Array>
+            <mxPoint x="455" y="1362" as="targetPoint" />
+            <mxPoint y="-1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="faXIZWIeYT5rvHZ5Q_8h-59" value="" style="endArrow=none;dashed=1;html=1;rounded=0;exitX=-0.002;exitY=0.112;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.997;entryY=0.112;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="58.88000000000011" y="1395.48" as="sourcePoint" />
+            <mxPoint x="618.3200000000002" y="1395.48" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="faXIZWIeYT5rvHZ5Q_8h-60" value="[if either satisfies]" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="100.00206896551742" y="1391" as="geometry">
+            <mxPoint x="11" y="18" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="faXIZWIeYT5rvHZ5Q_8h-61" value="choice is the one satisfies" style="html=1;align=center;spacingLeft=2;endArrow=block;rounded=0;edgeStyle=orthogonalEdgeStyle;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry x="0.0857" y="65" relative="1" as="geometry">
+            <mxPoint x="455" y="1426" as="sourcePoint" />
+            <Array as="points">
+              <mxPoint x="475" y="1456" />
+            </Array>
+            <mxPoint x="455" y="1456" as="targetPoint" />
+            <mxPoint y="-1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="faXIZWIeYT5rvHZ5Q_8h-64" value="" style="endArrow=none;dashed=1;html=1;rounded=0;exitX=-0.002;exitY=0.112;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.998;entryY=0.415;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="faXIZWIeYT5rvHZ5Q_8h-52">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="30.000000000000107" y="1510" as="sourcePoint" />
+            <mxPoint x="589.4400000000002" y="1510" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="faXIZWIeYT5rvHZ5Q_8h-65" value="[if either is up]" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="70.00206896551742" y="1510" as="geometry">
+            <mxPoint x="11" y="18" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="faXIZWIeYT5rvHZ5Q_8h-66" value="check if the request is&amp;nbsp;&lt;div&gt;higher than or equal to&amp;nbsp;&lt;div&gt;the up elevator&#39;s current floor&lt;/div&gt;&lt;/div&gt;" style="html=1;align=center;spacingLeft=2;endArrow=block;rounded=0;edgeStyle=orthogonalEdgeStyle;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry x="0.2" y="74" relative="1" as="geometry">
+            <mxPoint x="455" y="1538" as="sourcePoint" />
+            <Array as="points">
+              <mxPoint x="475" y="1568" />
+            </Array>
+            <mxPoint x="455" y="1568" as="targetPoint" />
+            <mxPoint y="1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="faXIZWIeYT5rvHZ5Q_8h-67" value="alt" style="shape=umlFrame;whiteSpace=wrap;html=1;pointerEvents=0;" vertex="1" parent="1">
+          <mxGeometry x="60" y="1600" width="560" height="190" as="geometry" />
+        </mxCell>
+        <mxCell id="faXIZWIeYT5rvHZ5Q_8h-68" value="" style="endArrow=none;dashed=1;html=1;rounded=0;exitX=-0.002;exitY=0.112;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.997;entryY=0.112;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="60.56000000000011" y="1700" as="sourcePoint" />
+            <mxPoint x="620.0000000000001" y="1700" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="faXIZWIeYT5rvHZ5Q_8h-69" value="[if yes]" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="150.00206896551742" y="1600" as="geometry">
+            <mxPoint x="11" y="18" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="faXIZWIeYT5rvHZ5Q_8h-70" value="choice is the one closer&amp;nbsp;&lt;div&gt;to the request floor&lt;/div&gt;" style="html=1;align=center;spacingLeft=2;endArrow=block;rounded=0;edgeStyle=orthogonalEdgeStyle;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry x="0.0857" y="65" relative="1" as="geometry">
+            <mxPoint x="455" y="1635" as="sourcePoint" />
+            <Array as="points">
+              <mxPoint x="475" y="1665" />
+            </Array>
+            <mxPoint x="455" y="1665" as="targetPoint" />
+            <mxPoint y="-1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="faXIZWIeYT5rvHZ5Q_8h-71" value="[else]" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="80.00206896551742" y="1700" as="geometry">
+            <mxPoint x="11" y="18" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="faXIZWIeYT5rvHZ5Q_8h-72" value="choice is the idle one" style="html=1;align=center;spacingLeft=2;endArrow=block;rounded=0;edgeStyle=orthogonalEdgeStyle;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry x="0.0857" y="65" relative="1" as="geometry">
+            <mxPoint x="455" y="1740" as="sourcePoint" />
+            <Array as="points">
+              <mxPoint x="475" y="1770" />
+            </Array>
+            <mxPoint x="455" y="1770" as="targetPoint" />
+            <mxPoint y="-1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="faXIZWIeYT5rvHZ5Q_8h-73" value="" style="endArrow=none;dashed=1;html=1;rounded=0;exitX=-0.002;exitY=0.112;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.999;entryY=0.3;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="31.000000000000107" y="1810" as="sourcePoint" />
+            <mxPoint x="650" y="1810" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="faXIZWIeYT5rvHZ5Q_8h-74" value="[if both is idle]" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="70.00206896551742" y="1810" as="geometry">
+            <mxPoint x="11" y="18" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="faXIZWIeYT5rvHZ5Q_8h-75" value="choice is the one closer&amp;nbsp;&lt;div&gt;to the request floor&lt;/div&gt;" style="html=1;align=center;spacingLeft=2;endArrow=block;rounded=0;edgeStyle=orthogonalEdgeStyle;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry x="0.0857" y="65" relative="1" as="geometry">
+            <mxPoint x="455" y="1840" as="sourcePoint" />
+            <Array as="points">
+              <mxPoint x="475" y="1870" />
+            </Array>
+            <mxPoint x="455" y="1870" as="targetPoint" />
+            <mxPoint y="-1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="faXIZWIeYT5rvHZ5Q_8h-76" value="alt" style="shape=umlFrame;whiteSpace=wrap;html=1;pointerEvents=0;" vertex="1" parent="1">
+          <mxGeometry x="30" y="1910" width="620" height="450" as="geometry" />
+        </mxCell>
+        <mxCell id="faXIZWIeYT5rvHZ5Q_8h-77" value="[if choice is -1]" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="120.00206896551742" y="1910" as="geometry">
+            <mxPoint x="11" y="18" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="faXIZWIeYT5rvHZ5Q_8h-78" value="" style="endArrow=none;dashed=1;html=1;rounded=0;exitX=-0.002;exitY=0.112;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.999;entryY=0.3;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="31.000000000000107" y="2000" as="sourcePoint" />
+            <mxPoint x="650" y="2000" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="faXIZWIeYT5rvHZ5Q_8h-79" value="continue" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="445" y="1960" as="sourcePoint" />
+            <mxPoint x="175" y="1960" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="faXIZWIeYT5rvHZ5Q_8h-80" value="[else]" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="50.002068965517424" y="2000" as="geometry">
+            <mxPoint x="11" y="18" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="faXIZWIeYT5rvHZ5Q_8h-81" value="alt" style="shape=umlFrame;whiteSpace=wrap;html=1;pointerEvents=0;" vertex="1" parent="1">
+          <mxGeometry x="60" y="2040" width="560" height="300" as="geometry" />
+        </mxCell>
+        <mxCell id="faXIZWIeYT5rvHZ5Q_8h-82" value="" style="endArrow=none;dashed=1;html=1;rounded=0;exitX=-0.002;exitY=0.112;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="60.00000000000011" y="2153" as="sourcePoint" />
+            <mxPoint x="620" y="2153" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="faXIZWIeYT5rvHZ5Q_8h-83" value="[if choice is idle&lt;div&gt;and current floor is&amp;nbsp;&lt;/div&gt;&lt;div&gt;higher than request]&lt;/div&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="160.00206896551742" y="2050" as="geometry">
+            <mxPoint x="11" y="18" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="faXIZWIeYT5rvHZ5Q_8h-84" value="change the elevator state to up&lt;div&gt;move the request to the elevator_execute_queue&lt;/div&gt;" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="445" y="2124" as="sourcePoint" />
+            <mxPoint x="175" y="2124" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="faXIZWIeYT5rvHZ5Q_8h-85" value="[if choice is idle&lt;div&gt;and current floor is&amp;nbsp;&lt;/div&gt;&lt;div&gt;lower than request]&lt;/div&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="123.00206896551742" y="2160" as="geometry">
+            <mxPoint x="11" y="18" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="faXIZWIeYT5rvHZ5Q_8h-86" value="change the elevator state to down_up&lt;div&gt;move the request to the elevator_execute_queue&lt;/div&gt;" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="445" y="2230" as="sourcePoint" />
+            <mxPoint x="175" y="2230" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="faXIZWIeYT5rvHZ5Q_8h-87" value="" style="endArrow=none;dashed=1;html=1;rounded=0;exitX=-0.002;exitY=0.112;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="60.000000000000114" y="2250" as="sourcePoint" />
+            <mxPoint x="620" y="2250" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="faXIZWIeYT5rvHZ5Q_8h-88" value="&lt;div&gt;move the request to the elevator_execute_queue&lt;/div&gt;" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="445" y="2300" as="sourcePoint" />
+            <mxPoint x="175" y="2300" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.6//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_6.dtd'>
+<nta>
+	<declaration>broadcast chan can_send, can_pick;
+broadcast chan p1, p2, p3, p4;
+broadcast chan s1, s2, s3, s4;
+
+int interval=0;
+clock gclk;</declaration>
+	<template>
+		<name x="5" y="5">ElevatorController</name>
+		<declaration>// Place local declarations here.
+int current_floor=1;
+int out_button=-1;
+int in_button=-1;
+int minus_times=0;
+int each_interval=0;</declaration>
+		<location id="id0" x="-646" y="-255">
+			<name x="-656" y="-289">UpPick</name>
+		</location>
+		<location id="id1" x="-476" y="-255">
+			<name x="-486" y="-289">DownPick</name>
+		</location>
+		<location id="id2" x="-807" y="-144">
+			<name x="-817" y="-178">ToSend</name>
+		</location>
+		<location id="id3" x="-646" y="-144">
+			<name x="-656" y="-178">UpSend</name>
+		</location>
+		<location id="id4" x="-476" y="-144">
+			<name x="-486" y="-178">DownSend</name>
+		</location>
+		<location id="id5" x="-807" y="-255">
+			<name x="-817" y="-289">ToPick</name>
+		</location>
+		<init ref="id5"/>
+		<transition id="id6">
+			<source ref="id2"/>
+			<target ref="id2"/>
+			<label kind="guard" x="-986" y="-195">in_button==-1</label>
+			<label kind="synchronisation" x="-1088" y="-195">can_send!</label>
+			<nail x="-824" y="-187"/>
+			<nail x="-790" y="-187"/>
+		</transition>
+		<transition id="id7">
+			<source ref="id5"/>
+			<target ref="id5"/>
+			<label kind="guard" x="-977" y="-331">out_button==-1</label>
+			<label kind="synchronisation" x="-1105" y="-331">can_pick!</label>
+			<nail x="-833" y="-314"/>
+			<nail x="-782" y="-314"/>
+		</transition>
+		<transition id="id8">
+			<source ref="id4"/>
+			<target ref="id5"/>
+			<label kind="guard" x="-76" y="-161">in_button==current_floor</label>
+			<label kind="assignment" x="144" y="-161">in_button=-1,minus_times-=1,each_interval=0</label>
+		</transition>
+		<transition id="id9">
+			<source ref="id3"/>
+			<target ref="id5"/>
+			<label kind="guard" x="-76" y="-204">in_button==current_floor</label>
+			<label kind="assignment" x="144" y="-204">in_button=-1,minus_times-=1,each_interval=0</label>
+		</transition>
+		<transition id="id10">
+			<source ref="id1"/>
+			<target ref="id2"/>
+			<label kind="guard" x="-365" y="-297">out_button==current_floor</label>
+			<label kind="assignment" x="-127" y="-297">out_button=-1,minus_times+=1,each_interval=0</label>
+		</transition>
+		<transition id="id11">
+			<source ref="id0"/>
+			<target ref="id2"/>
+			<label kind="guard" x="-365" y="-272">out_button==current_floor</label>
+			<label kind="assignment" x="-127" y="-272">out_button=-1,minus_times+=1,each_interval=0</label>
+		</transition>
+		<transition id="id12">
+			<source ref="id5"/>
+			<target ref="id1"/>
+			<label kind="guard" x="-789" y="-391">out_button!=-1&amp;&amp;out_button&lt;current_floor</label>
+			<label kind="assignment" x="-789" y="-357">current_floor=current_floor-1,each_interval+=1,interval+=1</label>
+			<nail x="-807" y="-357"/>
+			<nail x="-476" y="-357"/>
+		</transition>
+		<transition id="id13">
+			<source ref="id5"/>
+			<target ref="id0"/>
+			<label kind="guard" x="-433" y="-391">out_button!=-1&amp;&amp;out_button&gt;current_floor</label>
+			<label kind="assignment" x="-374" y="-357">current_floor=current_floor+1,each_interval+=1,interval+=1</label>
+		</transition>
+		<transition id="id14">
+			<source ref="id2"/>
+			<target ref="id4"/>
+			<label kind="guard" x="-340" y="76">in_button!=-1&amp;&amp;in_button&lt;current_floor</label>
+			<label kind="assignment" x="-340" y="102">current_floor=current_floor-1,each_interval+=1,interval+=1</label>
+			<nail x="-807" y="-42"/>
+			<nail x="-476" y="-42"/>
+		</transition>
+		<transition id="id15">
+			<source ref="id2"/>
+			<target ref="id3"/>
+			<label kind="guard" x="-884" y="76">in_button!=-1&amp;&amp;in_button&gt;current_floor</label>
+			<label kind="assignment" x="-867" y="102">current_floor=current_floor+1,each_interval+=1,interval+=1</label>
+		</transition>
+		<transition id="id16">
+			<source ref="id4"/>
+			<target ref="id4"/>
+			<label kind="guard" x="323" y="-119">in_button!=current_floor</label>
+			<label kind="assignment" x="578" y="-119">current_floor=current_floor-1,each_interval+=1,interval+=1</label>
+			<nail x="-459" y="-110"/>
+			<nail x="-493" y="-110"/>
+		</transition>
+		<transition id="id17">
+			<source ref="id3"/>
+			<target ref="id3"/>
+			<label kind="guard" x="-365" y="-119">in_button!=current_floor</label>
+			<label kind="assignment" x="-136" y="-119">current_floor=current_floor+1,each_interval+=1,interval+=1</label>
+			<nail x="-629" y="-110"/>
+			<nail x="-663" y="-110"/>
+		</transition>
+		<transition id="id18">
+			<source ref="id1"/>
+			<target ref="id1"/>
+			<label kind="guard" x="-459" y="-229">out_button!=current_floor</label>
+			<label kind="assignment" x="-238" y="-229">current_floor=current_floor-1,each_interval+=1,interval+=1</label>
+			<nail x="-459" y="-221"/>
+			<nail x="-493" y="-221"/>
+		</transition>
+		<transition id="id19">
+			<source ref="id0"/>
+			<target ref="id0"/>
+			<label kind="guard" x="187" y="-229">out_button!=current_floor</label>
+			<label kind="assignment" x="416" y="-229">current_floor=current_floor+1,each_interval+=1,interval+=1</label>
+			<nail x="-629" y="-221"/>
+			<nail x="-663" y="-221"/>
+		</transition>
+		<transition id="id20">
+			<source ref="id2"/>
+			<target ref="id2"/>
+			<label kind="synchronisation" x="-952" y="-170">s1?</label>
+			<label kind="assignment" x="-1105" y="-170">in_button=1</label>
+			<nail x="-858" y="-127"/>
+			<nail x="-858" y="-170"/>
+		</transition>
+		<transition id="id21">
+			<source ref="id2"/>
+			<target ref="id2"/>
+			<label kind="synchronisation" x="-952" y="-119">s3?</label>
+			<label kind="assignment" x="-1105" y="-119">in_button=3</label>
+			<nail x="-782" y="-110"/>
+			<nail x="-799" y="-110"/>
+		</transition>
+		<transition id="id22">
+			<source ref="id2"/>
+			<target ref="id2"/>
+			<label kind="synchronisation" x="-952" y="-144">s2?</label>
+			<label kind="assignment" x="-1105" y="-144">in_button=2</label>
+			<nail x="-833" y="-110"/>
+			<nail x="-816" y="-110"/>
+		</transition>
+		<transition id="id23">
+			<source ref="id2"/>
+			<target ref="id2"/>
+			<label kind="synchronisation" x="-952" y="-93">s4?</label>
+			<label kind="assignment" x="-1105" y="-93">in_button=4</label>
+			<nail x="-756" y="-161"/>
+			<nail x="-756" y="-119"/>
+		</transition>
+		<transition id="id24">
+			<source ref="id5"/>
+			<target ref="id5"/>
+			<label kind="synchronisation" x="-935" y="-297">p1?</label>
+			<label kind="assignment" x="-1130" y="-297">out_button=1</label>
+			<nail x="-858" y="-238"/>
+			<nail x="-858" y="-281"/>
+		</transition>
+		<transition id="id25">
+			<source ref="id5"/>
+			<target ref="id5"/>
+			<label kind="synchronisation" x="-935" y="-246">p3?</label>
+			<label kind="assignment" x="-1130" y="-246">out_button=3</label>
+			<nail x="-782" y="-221"/>
+			<nail x="-799" y="-221"/>
+		</transition>
+		<transition id="id26">
+			<source ref="id5"/>
+			<target ref="id5"/>
+			<label kind="synchronisation" x="-935" y="-272">p2?</label>
+			<label kind="assignment" x="-1130" y="-272">out_button=2</label>
+			<nail x="-833" y="-221"/>
+			<nail x="-816" y="-221"/>
+		</transition>
+		<transition id="id27">
+			<source ref="id5"/>
+			<target ref="id5"/>
+			<label kind="synchronisation" x="-935" y="-221">p4?</label>
+			<label kind="assignment" x="-1130" y="-221">out_button=4</label>
+			<nail x="-756" y="-272"/>
+			<nail x="-756" y="-230"/>
+		</transition>
+	</template>
+	<template>
+		<name>Passenger</name>
+		<declaration>clock t;</declaration>
+		<location id="id28" x="-518" y="-25">
+			<name x="-569" y="-33">Start</name>
+		</location>
+		<location id="id29" x="-399" y="-76">
+		</location>
+		<location id="id30" x="-399" y="-195">
+		</location>
+		<location id="id31" x="-399" y="17">
+		</location>
+		<location id="id32" x="-399" y="119">
+		</location>
+		<location id="id33" x="-272" y="-195">
+		</location>
+		<location id="id34" x="-272" y="-76">
+		</location>
+		<location id="id35" x="-272" y="17">
+		</location>
+		<location id="id36" x="-272" y="119">
+		</location>
+		<location id="id37" x="0" y="-348">
+		</location>
+		<location id="id38" x="0" y="-144">
+		</location>
+		<location id="id39" x="8" y="59">
+		</location>
+		<location id="id40" x="0" y="212">
+		</location>
+		<location id="id41" x="272" y="-25">
+			<name x="306" y="-34">arrive</name>
+		</location>
+		<location id="id42" x="93" y="-348">
+		</location>
+		<location id="id43" x="93" y="-144">
+		</location>
+		<location id="id44" x="102" y="59">
+		</location>
+		<location id="id45" x="110" y="212">
+		</location>
+		<init ref="id28"/>
+		<transition id="id46">
+			<source ref="id45"/>
+			<target ref="id41"/>
+			<label kind="synchronisation" x="128" y="76">can_pick?</label>
+		</transition>
+		<transition id="id47">
+			<source ref="id44"/>
+			<target ref="id41"/>
+			<label kind="synchronisation" x="120" y="0">can_pick?</label>
+		</transition>
+		<transition id="id48">
+			<source ref="id43"/>
+			<target ref="id41"/>
+			<label kind="synchronisation" x="111" y="-101">can_pick?</label>
+		</transition>
+		<transition id="id49">
+			<source ref="id42"/>
+			<target ref="id41"/>
+			<label kind="synchronisation" x="111" y="-203">can_pick?</label>
+		</transition>
+		<transition id="id50">
+			<source ref="id40"/>
+			<target ref="id45"/>
+			<label kind="synchronisation" x="18" y="195">s4!</label>
+		</transition>
+		<transition id="id51">
+			<source ref="id39"/>
+			<target ref="id44"/>
+			<label kind="synchronisation" x="35" y="42">s3!</label>
+		</transition>
+		<transition id="id52">
+			<source ref="id38"/>
+			<target ref="id43"/>
+			<label kind="synchronisation" x="18" y="-161">s2!</label>
+		</transition>
+		<transition id="id53">
+			<source ref="id37"/>
+			<target ref="id42"/>
+			<label kind="synchronisation" x="18" y="-365">s1!</label>
+		</transition>
+		<transition id="id54">
+			<source ref="id36"/>
+			<target ref="id40"/>
+			<label kind="synchronisation" x="-254" y="148">can_send?</label>
+		</transition>
+		<transition id="id55">
+			<source ref="id35"/>
+			<target ref="id40"/>
+			<label kind="synchronisation" x="-254" y="97">can_send?</label>
+		</transition>
+		<transition id="id56">
+			<source ref="id34"/>
+			<target ref="id40"/>
+			<label kind="synchronisation" x="-254" y="51">can_send?</label>
+		</transition>
+		<transition id="id57">
+			<source ref="id33"/>
+			<target ref="id40"/>
+			<label kind="synchronisation" x="-254" y="-9">can_send?</label>
+		</transition>
+		<transition id="id58">
+			<source ref="id36"/>
+			<target ref="id39"/>
+			<label kind="synchronisation" x="-254" y="25">can_send?</label>
+		</transition>
+		<transition id="id59">
+			<source ref="id35"/>
+			<target ref="id39"/>
+			<label kind="synchronisation" x="-254" y="-25">can_send?</label>
+		</transition>
+		<transition id="id60">
+			<source ref="id34"/>
+			<target ref="id39"/>
+			<label kind="synchronisation" x="-254" y="-72">can_send?</label>
+		</transition>
+		<transition id="id61">
+			<source ref="id33"/>
+			<target ref="id39"/>
+			<label kind="synchronisation" x="-254" y="-131">can_send?</label>
+		</transition>
+		<transition id="id62">
+			<source ref="id36"/>
+			<target ref="id38"/>
+			<label kind="synchronisation" x="-254" y="-29">can_send?</label>
+		</transition>
+		<transition id="id63">
+			<source ref="id35"/>
+			<target ref="id38"/>
+			<label kind="synchronisation" x="-254" y="-80">can_send?</label>
+		</transition>
+		<transition id="id64">
+			<source ref="id34"/>
+			<target ref="id38"/>
+			<label kind="synchronisation" x="-254" y="-127">can_send?</label>
+		</transition>
+		<transition id="id65">
+			<source ref="id33"/>
+			<target ref="id38"/>
+			<label kind="synchronisation" x="-254" y="-186">can_send?</label>
+		</transition>
+		<transition id="id66">
+			<source ref="id36"/>
+			<target ref="id37"/>
+			<label kind="synchronisation" x="-254" y="-131">can_send?</label>
+		</transition>
+		<transition id="id67">
+			<source ref="id35"/>
+			<target ref="id37"/>
+			<label kind="synchronisation" x="-254" y="-182">can_send?</label>
+		</transition>
+		<transition id="id68">
+			<source ref="id34"/>
+			<target ref="id37"/>
+			<label kind="synchronisation" x="-254" y="-229">can_send?</label>
+		</transition>
+		<transition id="id69">
+			<source ref="id33"/>
+			<target ref="id37"/>
+			<label kind="synchronisation" x="-254" y="-288">can_send?</label>
+		</transition>
+		<transition id="id70">
+			<source ref="id32"/>
+			<target ref="id36"/>
+			<label kind="synchronisation" x="-381" y="102">p4!</label>
+		</transition>
+		<transition id="id71">
+			<source ref="id31"/>
+			<target ref="id35"/>
+			<label kind="synchronisation" x="-381" y="0">p3!</label>
+		</transition>
+		<transition id="id72">
+			<source ref="id29"/>
+			<target ref="id34"/>
+			<label kind="synchronisation" x="-381" y="-93">p2!</label>
+		</transition>
+		<transition id="id73">
+			<source ref="id30"/>
+			<target ref="id33"/>
+			<label kind="synchronisation" x="-381" y="-212">p1!</label>
+		</transition>
+		<transition id="id74">
+			<source ref="id28"/>
+			<target ref="id32"/>
+			<label kind="synchronisation" x="-500" y="30">can_pick?</label>
+		</transition>
+		<transition id="id75">
+			<source ref="id28"/>
+			<target ref="id31"/>
+			<label kind="synchronisation" x="-500" y="-21">can_pick?</label>
+		</transition>
+		<transition id="id76">
+			<source ref="id28"/>
+			<target ref="id29"/>
+			<label kind="synchronisation" x="-500" y="-67">can_pick?</label>
+		</transition>
+		<transition id="id77">
+			<source ref="id28"/>
+			<target ref="id30"/>
+			<label kind="synchronisation" x="-500" y="-127">can_pick?</label>
+		</transition>
+	</template>
+	<system>// Process
+passenger1 = Passenger();
+passenger2 = Passenger();
+passenger3 = Passenger();
+passenger4 = Passenger();
+
+system ElevatorController, passenger1,passenger2,passenger3,passenger4;</system>
+	<queries>
+		<query>
+			<formula>E&lt;&gt; interval&gt;=1000 and !passenger1.arrive and !passenger2.arrive and !passenger3.arrive and !passenger4.arrive</formula>
+			<comment/>
+			<result outcome="failure" type="quality" timestamp="2024-06-24 00:35:34 +0800">
+			</result>
+		</query>
+	</queries>
+</nta>

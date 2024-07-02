@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.6//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_6.dtd'>
+<nta>
+	<declaration>broadcast chan use_knife, use_fork;
+broadcast chan no_knife, no_fork;
+broadcast chan knife, fork;
+broadcast chan return_knife, return_fork;
+
+clock gclk;</declaration>
+	<template>
+		<name x="5" y="5">ElevatorController</name>
+		<declaration>// Place local declarations here.
+int current_floor=1;
+int out_button=-1;
+int in_button=-1;
+int minus_times=0;
+int each_interval=0;</declaration>
+		<location id="id0" x="-646" y="-255">
+			<name x="-656" y="-289">UpPick</name>
+		</location>
+		<location id="id1" x="-476" y="-255">
+			<name x="-486" y="-289">DownPick</name>
+		</location>
+		<location id="id2" x="-807" y="-144">
+			<name x="-817" y="-178">ToSend</name>
+		</location>
+		<location id="id3" x="-646" y="-144">
+			<name x="-656" y="-178">UpSend</name>
+		</location>
+		<location id="id4" x="-476" y="-144">
+			<name x="-486" y="-178">DownSend</name>
+		</location>
+		<location id="id5" x="-807" y="-255">
+			<name x="-817" y="-289">ToPick</name>
+		</location>
+		<init ref="id5"/>
+		<transition id="id6">
+			<source ref="id4"/>
+			<target ref="id5"/>
+			<label kind="guard" x="-76" y="-161">in_button==current_floor</label>
+			<label kind="assignment" x="144" y="-161">in_button=-1,minus_times-=1,each_interval=0</label>
+		</transition>
+		<transition id="id7">
+			<source ref="id3"/>
+			<target ref="id5"/>
+			<label kind="guard" x="-76" y="-204">in_button==current_floor</label>
+			<label kind="assignment" x="144" y="-204">in_button=-1,minus_times-=1,each_interval=0</label>
+		</transition>
+		<transition id="id8">
+			<source ref="id1"/>
+			<target ref="id2"/>
+			<label kind="guard" x="-365" y="-297">out_button==current_floor</label>
+			<label kind="assignment" x="-127" y="-297">out_button=-1,minus_times+=1,each_interval=0</label>
+		</transition>
+		<transition id="id9">
+			<source ref="id0"/>
+			<target ref="id2"/>
+			<label kind="guard" x="-365" y="-272">out_button==current_floor</label>
+			<label kind="assignment" x="-127" y="-272">out_button=-1,minus_times+=1,each_interval=0</label>
+		</transition>
+		<transition id="id10">
+			<source ref="id5"/>
+			<target ref="id1"/>
+			<label kind="guard" x="-789" y="-391">out_button!=-1&amp;&amp;out_button&lt;current_floor</label>
+			<label kind="assignment" x="-789" y="-357">current_floor=current_floor-1,each_interval+=1</label>
+			<nail x="-807" y="-357"/>
+			<nail x="-476" y="-357"/>
+		</transition>
+		<transition id="id11">
+			<source ref="id5"/>
+			<target ref="id0"/>
+			<label kind="guard" x="-433" y="-391">out_button!=-1&amp;&amp;out_button&gt;current_floor</label>
+			<label kind="assignment" x="-374" y="-357">current_floor=current_floor+1,each_interval+=1</label>
+		</transition>
+		<transition id="id12">
+			<source ref="id2"/>
+			<target ref="id4"/>
+			<label kind="guard" x="-340" y="76">in_button!=-1&amp;&amp;in_button&lt;current_floor</label>
+			<label kind="assignment" x="-340" y="102">current_floor=current_floor-1,each_interval+=1</label>
+			<nail x="-807" y="-42"/>
+			<nail x="-476" y="-42"/>
+		</transition>
+		<transition id="id13">
+			<source ref="id2"/>
+			<target ref="id3"/>
+			<label kind="guard" x="-884" y="76">in_button!=-1&amp;&amp;in_button&gt;current_floor</label>
+			<label kind="assignment" x="-867" y="102">current_floor=current_floor+1,each_interval+=1</label>
+		</transition>
+		<transition id="id14">
+			<source ref="id4"/>
+			<target ref="id4"/>
+			<label kind="guard" x="323" y="-119">in_button!=current_floor</label>
+			<label kind="assignment" x="578" y="-119">current_floor=current_floor-1,each_interval+=1</label>
+			<nail x="-459" y="-110"/>
+			<nail x="-493" y="-110"/>
+		</transition>
+		<transition id="id15">
+			<source ref="id3"/>
+			<target ref="id3"/>
+			<label kind="guard" x="-365" y="-119">in_button!=current_floor</label>
+			<label kind="assignment" x="-136" y="-119">current_floor=current_floor+1,each_interval+=1</label>
+			<nail x="-629" y="-110"/>
+			<nail x="-663" y="-110"/>
+		</transition>
+		<transition id="id16">
+			<source ref="id1"/>
+			<target ref="id1"/>
+			<label kind="guard" x="-459" y="-229">out_button!=current_floor</label>
+			<label kind="assignment" x="-238" y="-229">current_floor=current_floor-1,each_interval+=1</label>
+			<nail x="-459" y="-221"/>
+			<nail x="-493" y="-221"/>
+		</transition>
+		<transition id="id17">
+			<source ref="id0"/>
+			<target ref="id0"/>
+			<label kind="guard" x="187" y="-229">out_button!=current_floor</label>
+			<label kind="assignment" x="416" y="-229">current_floor=current_floor+1,each_interval+=1</label>
+			<nail x="-629" y="-221"/>
+			<nail x="-663" y="-221"/>
+		</transition>
+		<transition id="id18">
+			<source ref="id2"/>
+			<target ref="id2"/>
+			<label kind="guard" x="-986" y="-170">in_button==-1</label>
+			<label kind="assignment" x="-1105" y="-170">in_button=1</label>
+			<nail x="-858" y="-127"/>
+			<nail x="-858" y="-170"/>
+		</transition>
+		<transition id="id19">
+			<source ref="id2"/>
+			<target ref="id2"/>
+			<label kind="guard" x="-986" y="-119">in_button==-1</label>
+			<label kind="assignment" x="-1105" y="-119">in_button=3</label>
+			<nail x="-782" y="-110"/>
+			<nail x="-799" y="-110"/>
+		</transition>
+		<transition id="id20">
+			<source ref="id2"/>
+			<target ref="id2"/>
+			<label kind="guard" x="-986" y="-144">in_button==-1</label>
+			<label kind="assignment" x="-1105" y="-144">in_button=2</label>
+			<nail x="-833" y="-110"/>
+			<nail x="-816" y="-110"/>
+		</transition>
+		<transition id="id21">
+			<source ref="id2"/>
+			<target ref="id2"/>
+			<label kind="guard" x="-986" y="-93">in_button==-1</label>
+			<label kind="assignment" x="-1105" y="-93">in_button=4</label>
+			<nail x="-756" y="-161"/>
+			<nail x="-756" y="-119"/>
+		</transition>
+		<transition id="id22">
+			<source ref="id5"/>
+			<target ref="id5"/>
+			<label kind="guard" x="-977" y="-297">out_button==-1</label>
+			<label kind="assignment" x="-1130" y="-297">out_button=1</label>
+			<nail x="-858" y="-238"/>
+			<nail x="-858" y="-281"/>
+		</transition>
+		<transition id="id23">
+			<source ref="id5"/>
+			<target ref="id5"/>
+			<label kind="guard" x="-977" y="-246">out_button==-1</label>
+			<label kind="assignment" x="-1130" y="-246">out_button=3</label>
+			<nail x="-782" y="-221"/>
+			<nail x="-799" y="-221"/>
+		</transition>
+		<transition id="id24">
+			<source ref="id5"/>
+			<target ref="id5"/>
+			<label kind="guard" x="-977" y="-272">out_button==-1</label>
+			<label kind="assignment" x="-1130" y="-272">out_button=2</label>
+			<nail x="-833" y="-221"/>
+			<nail x="-816" y="-221"/>
+		</transition>
+		<transition id="id25">
+			<source ref="id5"/>
+			<target ref="id5"/>
+			<label kind="guard" x="-977" y="-221">out_button==-1</label>
+			<label kind="assignment" x="-1130" y="-221">out_button=4</label>
+			<nail x="-756" y="-272"/>
+			<nail x="-756" y="-230"/>
+		</transition>
+	</template>
+	<system>system ElevatorController;</system>
+	<queries>
+		<query>
+			<formula>E&lt;&gt; ElevatorController.each_interval&gt;5</formula>
+			<comment/>
+			<result outcome="failure" type="quality" timestamp="2024-06-15 00:07:35 +0800">
+			</result>
+		</query>
+		<query>
+			<formula>E&lt;&gt; ElevatorController.minus_times!=1 and ElevatorController.minus_times!=0</formula>
+			<comment/>
+			<result outcome="failure" type="quality" timestamp="2024-06-15 00:02:40 +0800">
+			</result>
+		</query>
+		<query>
+			<formula>E&lt;&gt; ElevatorController.current_floor==0 or ElevatorController.current_floor&lt;=-2 or ElevatorController.current_floor&gt;=5</formula>
+			<comment/>
+			<result outcome="failure" type="quality" timestamp="2024-06-15 13:45:42 +0800">
+			</result>
+		</query>
+	</queries>
+</nta>

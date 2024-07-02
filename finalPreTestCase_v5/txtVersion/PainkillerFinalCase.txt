@@ -1,0 +1,18 @@
+initialization: set simulation speed (real time 1s -> simulated time 2min)
+____________________________________________________________________________
+
+case #1:
+set baseline 0.01ml/min	设置baseline值为0.01ml/min
+set bolus 0.30ml/shot	设置bolus值为0.30ml/shot
+baseline On	打开baseline
+(simulated time: about 30min later) Request Bolus	病人要求注射bolus（应该成功注射）	
+(simulated time: about 75min later) Request Bolus	病人要求注射bolus（不应注射）
+baseline Off	关闭baseline
+set baseline 0.1ml/min	设置baseline值为0.10ml/min
+baseline On	再次打开baseline
+(simulated time: about 1-3min later)  baseline注射应该会触发hour limit并停止注射
+(simulated time: 10min later)  每隔10min baseline会注射一次
+(after the day limit is reached) 到达day limit，停止注射
+
+
+

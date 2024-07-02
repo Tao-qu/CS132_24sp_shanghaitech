@@ -1,0 +1,24 @@
+initialization: 
+Both elevators(#1, #2) initially stop on the first floor and the doors are closed.
+Passenger A at floor 3.
+Passenger B at floor 2.
+Passenger C at floor 1.
+____________________________________________________________________________
+
+Case#1:
+call_down@3	乘客A在3楼按下下行按钮
+(500ms later)		call_up@2	乘客B在2楼按下上行按钮
+(500ms later)		call_up@1	乘客C在1楼按下上行按钮
+(after passenger B entering elevator)		select_floor@3#corresponding_elevator	乘客B在对应的电梯内选择3楼
+(after passenger A entering elevator)		select_floor@-1#corresponding_elevator	乘客A在对应的电梯内选择-1楼
+(after passenger C entering elevator)		select_floor@3#corresponding_elevator	乘客C在对应的电梯内选择3楼
+
+Expected output of Case#1:
+Passenger A at floor -1.
+Passenger B at floor 3.
+Passenger C at floor 3.
+
+
+
+
+

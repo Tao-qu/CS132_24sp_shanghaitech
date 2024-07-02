@@ -1,0 +1,30 @@
+initialization: id: 2023123456 password: 111111  money:500
+____________________________________________________________________________
+
+Case:
+create_account@222222                    创建一个新账户并记录id
+deposit_cash@1320                        failed，存钱非整百数
+deposit_cash@1500                        存入1500元
+
+open_app
+open_app                                 打开了两个app
+log_in@2023123456@111111#1               app1上登录数据库中已经存在的账户2023123456
+log_in@id@123456#2                       failed，密码错误
+log_in@id@222222#2                       app2上登录刚刚新创建的账户
+
+transfer_money@2023123456@1000#2         app2上的账户给2023123456转1000元
+withdraw_cash@1000@222222                failed，ATM取钱失败，账户余额不足
+withdraw_cash@500@222222                 取钱成功
+log_out#2                                app2上的账户登出
+
+log_in@2023123456@111111#2               在app2上登录2023123456
+query#2                                  在app2上查询
+query#1                                  failed，app1上之前登录的账户已经被顶掉
+log_out#2                                app2上的账户登出
+close_app#2                              关掉app2
+
+return_card                              ATM退卡（退新创建的账户）
+insert_card@2023123456                   ATM插卡2023123456
+close_account                            failed，账户中还有余额
+transfer_money@id@1500                   给另一个账户转1500元（余额清空）
+close_account                            注销账户

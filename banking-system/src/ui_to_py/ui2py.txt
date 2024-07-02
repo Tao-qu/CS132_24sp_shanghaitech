@@ -1,0 +1,20 @@
+pyuic5 -o ui_to_py/log_UI.py ui/log.ui
+pyuic5 -o ui_to_py/register_UI.py ui/register.ui
+pyuic5 -o ui_to_py/binding_UI.py ui/binding.ui
+pyuic5 -o ui_to_py/main_UI.py ui/main.ui
+
+pyuic5 -o ui_to_py/manage_UI.py ui/manage.ui
+pyuic5 -o ui_to_py/add_UI.py ui/add.ui
+pyuic5 -o ui_to_py/change_UI.py ui/change.ui
+pyuic5 -o ui_to_py/query_UI.py ui/query.ui
+pyuic5 -o ui_to_py/appquery_UI.py ui/appquery.ui
+
+pyuic5 -o ui_to_py/applog_UI.py ui/applog.ui
+pyuic5 -o ui_to_py/appmain_UI.py ui/appmain.ui
+pyuic5 -o ui_to_py/ATMlog_UI.py ui/ATMlog.ui
+pyuic5 -o ui_to_py/ATMmain_UI.py ui/ATMmain.ui
+pyuic5 -o ui_to_py/query_UI.py ui/query.ui
+
+
+
+

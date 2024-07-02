@@ -1,0 +1,410 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.6//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_6.dtd'>
+<nta>
+	<declaration>// Place global declarations here.
+// This model simulates the interaction 
+// between one user and the ATM 
+// including all the operations, except for transfer_money
+broadcast chan create_account;
+broadcast chan close_account;
+broadcast chan deposit_cash;
+broadcast chan withdraw_cash;
+broadcast chan insert_card;
+broadcast chan return_card;
+broadcast chan change_password;
+
+// success return
+broadcast chan account_created;
+broadcast chan account_closed;
+broadcast chan cash_deposited;
+broadcast chan cash_withdrawn;
+broadcast chan card_inserted;
+broadcast chan card_returned;
+broadcast chan password_changed;
+
+// fail return
+broadcast chan failed_create_account;
+broadcast chan failed_close_account;
+broadcast chan failed_deposit_cash;
+broadcast chan failed_withdraw_cash;
+broadcast chan failed_insert_card;
+broadcast chan failed_return_card;
+broadcast chan failed_change_password;
+
+// database of one user
+// assume a valid id is 3-digit and so is the password
+// the status shows whether the user exists
+int user_id = 111;
+int user_password = 111;
+int user_balance = 500;
+bool user_status = true;
+
+int ATM_current_user = -1;
+int APP1_current_user = -1;
+int APP2_current_user = -1;
+int APP3_current_user = -1;
+int id_input[3] = {-1, -1, -1};
+int password_input[3] = {-1, -1, -1};
+int money_input[3] = {-1, -1, -1};
+
+void input_id(int user, int id) {
+    id_input[user] = id;
+}
+
+void input_password(int user, int password) {
+    password_input[user] = password;
+}
+
+void input_money(int user, int money) {
+    money_input[user] = money;
+}
+
+void create_account_update(int user, int id) {
+    user_data[user].id = id;
+    user_data[user].password = password_input[user];
+    user_data[user].balance = 0;
+    user_data[user].status = true;
+    password_input[user] = -1;  
+}</declaration>
+	<template>
+		<name x="5" y="5">ATM</name>
+		<declaration>// Place local declarations here.
+</declaration>
+		<location id="id0" x="-1036" y="-59">
+			<name x="-1070" y="-42">ATM_login</name>
+		</location>
+		<location id="id1" x="-263" y="-59">
+			<name x="-297" y="-42">ATM_main</name>
+		</location>
+		<location id="id2" x="-697" y="-399">
+			<committed/>
+		</location>
+		<location id="id3" x="-858" y="-238">
+			<committed/>
+		</location>
+		<location id="id4" x="-663" y="314">
+			<committed/>
+		</location>
+		<location id="id5" x="-790" y="187">
+			<committed/>
+		</location>
+		<location id="id6" x="-901" y="76">
+			<committed/>
+		</location>
+		<location id="id7" x="-646" y="51">
+			<committed/>
+		</location>
+		<location id="id8" x="-544" y="-178">
+			<committed/>
+		</location>
+		<location id="id9" x="-756" y="-178">
+			<committed/>
+		</location>
+		<init ref="id0"/>
+		<transition id="id10">
+			<source ref="id8"/>
+			<target ref="id1"/>
+			<label kind="guard" x="-578" y="-110">user_data[u].balance!=0</label>
+			<label kind="synchronisation" x="-578" y="-93">failed_close_account[u]!</label>
+			<nail x="-459" y="-59"/>
+		</transition>
+		<transition id="id11">
+			<source ref="id9"/>
+			<target ref="id0"/>
+			<label kind="synchronisation" x="-918" y="-153">account_closed[u]!</label>
+			<label kind="assignment" x="-875" y="-136">u=-1</label>
+		</transition>
+		<transition id="id12">
+			<source ref="id8"/>
+			<target ref="id9"/>
+			<label kind="guard" x="-739" y="-229">user_data[u].balance==0</label>
+			<label kind="assignment" x="-739" y="-212">user_data[u].status=false</label>
+		</transition>
+		<transition id="id13">
+			<source ref="id1"/>
+			<target ref="id8"/>
+			<label kind="synchronisation" x="-493" y="-204">close_account[u]?</label>
+			<nail x="-357" y="-178"/>
+		</transition>
+		<transition id="id14">
+			<source ref="id7"/>
+			<target ref="id0"/>
+			<label kind="synchronisation" x="-850" y="17">card_returned[u]!</label>
+			<label kind="assignment" x="-799" y="34">u=-1</label>
+		</transition>
+		<transition id="id15">
+			<source ref="id1"/>
+			<target ref="id7"/>
+			<label kind="synchronisation" x="-510" y="0">return_card[u]?</label>
+		</transition>
+		<transition id="id16">
+			<source ref="id6"/>
+			<target ref="id0"/>
+			<label kind="synchronisation" x="-1045" y="-17">failed_insert_card[u]!</label>
+			<label kind="assignment" x="-969" y="0">u=-1</label>
+		</transition>
+		<transition id="id17">
+			<source ref="id5"/>
+			<target ref="id6"/>
+			<label kind="assignment" x="-901" y="119">password_input[u]=-1</label>
+		</transition>
+		<transition id="id18">
+			<source ref="id4"/>
+			<target ref="id5"/>
+			<label kind="guard" x="-731" y="161">id_input[u]!=
+user_data[u].id||
+password_input[u]!=
+user_data[u].password</label>
+			<label kind="assignment" x="-731" y="238">id_input[u]=-1</label>
+		</transition>
+		<transition id="id19">
+			<source ref="id4"/>
+			<target ref="id1"/>
+			<label kind="guard" x="-603" y="322">id_input[u]==
+user_data[u].id&amp;&amp;
+password_input[u]==
+user_data[u].password</label>
+			<label kind="synchronisation" x="-603" y="399">card_inserted[u]!</label>
+			<nail x="-416" y="314"/>
+		</transition>
+		<transition id="id20">
+			<source ref="id0"/>
+			<target ref="id4"/>
+			<label kind="select" x="-858" y="322">i:int[0,2]</label>
+			<label kind="guard" x="-833" y="339">u==-1</label>
+			<label kind="synchronisation" x="-875" y="356">insert_card[i]?</label>
+			<label kind="assignment" x="-833" y="373">u=i</label>
+			<nail x="-901" y="314"/>
+		</transition>
+		<transition id="id21">
+			<source ref="id2"/>
+			<target ref="id3"/>
+			<label kind="guard" x="-858" y="-357">password_input[u]&lt;100||
+password_input[u]&gt;=1000</label>
+			<label kind="assignment" x="-850" y="-314">password_input[u]=-1</label>
+		</transition>
+		<transition id="id22">
+			<source ref="id3"/>
+			<target ref="id0"/>
+			<label kind="synchronisation" x="-994" y="-204">failed_create_account[u]!</label>
+			<label kind="assignment" x="-918" y="-187">u=-1</label>
+		</transition>
+		<transition id="id23">
+			<source ref="id2"/>
+			<target ref="id1"/>
+			<label kind="select" x="-629" y="-484">i:int[100,999]</label>
+			<label kind="guard" x="-654" y="-467">password_input[u]&gt;=100&amp;&amp; 
+password_input[u]&lt;1000</label>
+			<label kind="synchronisation" x="-637" y="-433">account_created[u]!</label>
+			<label kind="assignment" x="-663" y="-416">create_account_update(u,i)</label>
+			<nail x="-450" y="-399"/>
+		</transition>
+		<transition id="id24">
+			<source ref="id0"/>
+			<target ref="id2"/>
+			<label kind="select" x="-884" y="-467">i:int[0,2]</label>
+			<label kind="guard" x="-867" y="-450">u==-1</label>
+			<label kind="synchronisation" x="-918" y="-433">create_account[i]?</label>
+			<label kind="assignment" x="-858" y="-416">u=i</label>
+			<nail x="-935" y="-399"/>
+		</transition>
+	</template>
+	<template>
+		<name>User</name>
+		<declaration>clock t;</declaration>
+		<location id="id25" x="-2218" y="178">
+			<name x="-2260" y="187">User_idle</name>
+			<label kind="invariant" x="-2235" y="204">t&lt;=0</label>
+		</location>
+		<location id="id26" x="-1487" y="178">
+			<name x="-1512" y="195">User_atm</name>
+			<label kind="invariant" x="-1495" y="212">t&lt;=0</label>
+		</location>
+		<location id="id27" x="-2064" y="425">
+			<name x="-2142" y="434">User_insert_card</name>
+			<label kind="invariant" x="-2091" y="451">t&lt;=10</label>
+		</location>
+		<location id="id28" x="-2081" y="-68">
+			<name x="-2150" y="-60">User_create_account</name>
+			<label kind="invariant" x="-2099" y="-43">t&lt;=10</label>
+		</location>
+		<location id="id29" x="-1851" y="-68">
+		</location>
+		<location id="id30" x="-1606" y="425">
+			<label kind="invariant" x="-1623" y="442">t&lt;=10</label>
+		</location>
+		<location id="id31" x="-1887" y="425">
+			<committed/>
+		</location>
+		<location id="id32" x="-1742" y="425">
+			<committed/>
+		</location>
+		<location id="id33" x="-1699" y="76">
+			<name x="-1758" y="93">User_return_card</name>
+			<label kind="invariant" x="-1716" y="110">t&lt;=10</label>
+		</location>
+		<location id="id34" x="-1911" y="76">
+			<committed/>
+		</location>
+		<location id="id35" x="-1691" y="237">
+			<name x="-1759" y="254">User_close_account</name>
+			<label kind="invariant" x="-1708" y="271">t&lt;=10</label>
+		</location>
+		<location id="id36" x="-1912" y="237">
+			<committed/>
+		</location>
+		<init ref="id25"/>
+		<transition id="id37">
+			<source ref="id30"/>
+			<target ref="id25"/>
+			<label kind="guard" x="-1785" y="297">t&gt;=10</label>
+			<label kind="assignment" x="-1776" y="314">t=0</label>
+			<nail x="-1878" y="263"/>
+		</transition>
+		<transition id="id38">
+			<source ref="id36"/>
+			<target ref="id26"/>
+			<label kind="synchronisation" x="-1886" y="144">failed_close_account[user]!</label>
+			<label kind="assignment" x="-1793" y="161">t=0</label>
+			<nail x="-1725" y="169"/>
+		</transition>
+		<transition id="id39">
+			<source ref="id36"/>
+			<target ref="id25"/>
+			<label kind="synchronisation" x="-2107" y="186">account_closed[user]!</label>
+			<label kind="assignment" x="-2031" y="203">t=0</label>
+		</transition>
+		<transition id="id40">
+			<source ref="id35"/>
+			<target ref="id36"/>
+			<label kind="guard" x="-1835" y="211">t&gt;=10</label>
+			<label kind="synchronisation" x="-1878" y="237">close_account[user]!</label>
+		</transition>
+		<transition id="id41">
+			<source ref="id26"/>
+			<target ref="id35"/>
+			<label kind="assignment" x="-1597" y="220">t=0</label>
+		</transition>
+		<transition id="id42">
+			<source ref="id34"/>
+			<target ref="id25"/>
+			<label kind="synchronisation" x="-2099" y="93">card_returned[user]!</label>
+			<label kind="assignment" x="-2031" y="110">t=0</label>
+		</transition>
+		<transition id="id43">
+			<source ref="id33"/>
+			<target ref="id34"/>
+			<label kind="guard" x="-1835" y="51">t&gt;=10</label>
+			<label kind="synchronisation" x="-1878" y="76">return_card[user]!</label>
+		</transition>
+		<transition id="id44">
+			<source ref="id26"/>
+			<target ref="id33"/>
+			<label kind="assignment" x="-1597" y="110">t=0</label>
+		</transition>
+		<transition id="id45">
+			<source ref="id30"/>
+			<target ref="id25"/>
+			<label kind="synchronisation" x="-2005" y="280">failed_insert_card[user]?</label>
+			<label kind="assignment" x="-1920" y="297">t=0</label>
+		</transition>
+		<transition id="id46">
+			<source ref="id31"/>
+			<target ref="id32"/>
+			<label kind="assignment" x="-1870" y="459">input_password(user,
+user_data[user].password)</label>
+			<nail x="-1853" y="459"/>
+			<nail x="-1785" y="459"/>
+		</transition>
+		<transition id="id47">
+			<source ref="id31"/>
+			<target ref="id32"/>
+			<label kind="select" x="-1861" y="349">p:int[0,1999]</label>
+			<label kind="assignment" x="-1887" y="366">input_password(user,p)</label>
+			<nail x="-1853" y="391"/>
+			<nail x="-1785" y="391"/>
+		</transition>
+		<transition id="id48">
+			<source ref="id27"/>
+			<target ref="id31"/>
+			<label kind="guard" x="-1997" y="442">t&gt;=10</label>
+			<label kind="assignment" x="-2039" y="459">input_id(user,
+user_data[user].id)</label>
+			<nail x="-2023" y="459"/>
+			<nail x="-1938" y="459"/>
+		</transition>
+		<transition id="id49">
+			<source ref="id27"/>
+			<target ref="id31"/>
+			<label kind="select" x="-2031" y="332">i:int[0,1999]</label>
+			<label kind="guard" x="-1997" y="349">t&gt;=10</label>
+			<label kind="assignment" x="-2040" y="366">input_id(user,i)</label>
+			<nail x="-2023" y="391"/>
+			<nail x="-1938" y="391"/>
+		</transition>
+		<transition id="id50">
+			<source ref="id29"/>
+			<target ref="id25"/>
+			<label kind="synchronisation" x="-2116" y="25">failed_create_account[user]?</label>
+			<label kind="assignment" x="-2022" y="42">t=0</label>
+		</transition>
+		<transition id="id51">
+			<source ref="id32"/>
+			<target ref="id30"/>
+			<label kind="synchronisation" x="-1751" y="391">insert_card[user]!</label>
+			<label kind="assignment" x="-1700" y="425">t=0</label>
+			<nail x="-1623" y="425"/>
+		</transition>
+		<transition id="id52">
+			<source ref="id28"/>
+			<target ref="id29"/>
+			<label kind="select" x="-2022" y="-145">p:int[0,1999]</label>
+			<label kind="guard" x="-1988" y="-128">t&gt;=10</label>
+			<label kind="synchronisation" x="-2048" y="-111">create_account[user]!</label>
+			<label kind="assignment" x="-2056" y="-94">input_password(user,p)</label>
+		</transition>
+		<transition id="id53">
+			<source ref="id29"/>
+			<target ref="id26"/>
+			<label kind="synchronisation" x="-1801" y="-102">account_created[user]?</label>
+			<label kind="assignment" x="-1724" y="-85">t=0</label>
+			<nail x="-1588" y="-68"/>
+		</transition>
+		<transition id="id54">
+			<source ref="id30"/>
+			<target ref="id26"/>
+			<label kind="synchronisation" x="-1572" y="306">card_inserted[user]?</label>
+			<label kind="assignment" x="-1504" y="323">t=0</label>
+			<nail x="-1555" y="425"/>
+		</transition>
+		<transition id="id55">
+			<source ref="id25"/>
+			<target ref="id27"/>
+			<label kind="guard" x="-2218" y="297">status</label>
+			<label kind="assignment" x="-2201" y="314">t=0</label>
+			<nail x="-2125" y="425"/>
+		</transition>
+		<transition id="id56">
+			<source ref="id25"/>
+			<target ref="id28"/>
+			<label kind="guard" x="-2217" y="-17">!status</label>
+			<label kind="assignment" x="-2200" y="8">t=0</label>
+			<nail x="-2140" y="-68"/>
+		</transition>
+	</template>
+	<system>// Place template instantiations here.
+
+// List one or more processes to be composed into a system.
+
+</system>
+	<queries>
+		<query>
+			<formula>A[] not deadlock</formula>
+			<comment/>
+		</query>
+		<query>
+			<formula>A[](user_data[2].status imply (user_data[2].id&gt;=100&amp;&amp;user_data[2].id&lt;1000))</formula>
+			<comment/>
+		</query>
+	</queries>
+</nta>

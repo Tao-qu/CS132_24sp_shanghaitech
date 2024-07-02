@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.6//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_6.dtd'>
+<nta>
+	<declaration>// Place global declarations here.
+// This model simulates money transferring between 3 users
+// database of 3 users
+struct { int id, balance; } user_data[3] = { {111, 0},
+                                             {222, 500},
+                                             {333, 5500} };
+
+// user input
+int id_input[3] = {-1, -1, -1};
+int money_input[3] = {-1, -1, -1};
+
+int id_to[3] = {-1,-1,-1};
+
+void input_id(int u, int id) {
+    id_input[u] = id;
+}
+
+void input_money(int u, int money) {
+    money_input[u] = money;
+}
+
+void clear_input(int u) {
+    id_input[u] = -1;
+    money_input[u] = -1;
+}
+
+void money_transferred_update(int u) {
+    user_data[u].balance -= money_input[u];
+    user_data[id_to[u]].balance += money_input[u];
+    clear_input(u);
+}
+
+
+</declaration>
+	<template>
+		<name x="9" y="9">User</name>
+		<parameter>int u</parameter>
+		<declaration>// Place local declarations here.
+</declaration>
+		<location id="id0" x="255" y="127">
+			<name x="187" y="144">User_transfer_money</name>
+		</location>
+		<location id="id1" x="459" y="331">
+			<committed/>
+		</location>
+		<location id="id2" x="459" y="-77">
+			<committed/>
+		</location>
+		<location id="id3" x="459" y="127">
+			<committed/>
+		</location>
+		<init ref="id0"/>
+		<transition id="id4">
+			<source ref="id3"/>
+			<target ref="id1"/>
+			<label kind="select" x="459" y="195">m:int[-1,2]</label>
+			<label kind="guard" x="459" y="212">id_input[u]==user_data[id_to[u]].id</label>
+			<label kind="assignment" x="459" y="229">input_money(u,m*100)</label>
+		</transition>
+		<transition id="id5">
+			<source ref="id2"/>
+			<target ref="id3"/>
+			<label kind="select" x="357" y="25">i:int[99,101]</label>
+			<label kind="assignment" x="357" y="42">input_id(u,i)</label>
+			<nail x="425" y="25"/>
+		</transition>
+		<transition id="id6">
+			<source ref="id1"/>
+			<target ref="id0"/>
+			<label kind="guard" x="94" y="220">money_input[u]&gt;=0&amp;&amp;
+money_input[u]&lt;=user_data[u].balance</label>
+			<label kind="assignment" x="94" y="254">money_transferred_update(u)</label>
+			<nail x="323" y="263"/>
+		</transition>
+		<transition id="id7">
+			<source ref="id3"/>
+			<target ref="id0"/>
+			<label kind="guard" x="247" y="93">id_input[u]!=user_data[id_to[u]].id</label>
+			<label kind="assignment" x="314" y="110">clear_input(u)</label>
+		</transition>
+		<transition id="id8">
+			<source ref="id1"/>
+			<target ref="id0"/>
+			<label kind="guard" x="289" y="161">money_input[u]&lt;0||
+money_input[u]&gt;user_data[u].balance</label>
+			<nail x="391" y="195"/>
+		</transition>
+		<transition id="id9">
+			<source ref="id2"/>
+			<target ref="id3"/>
+			<label kind="assignment" x="484" y="-9">input_id(u,user_data[id_to[u]].id)</label>
+			<nail x="493" y="25"/>
+		</transition>
+		<transition id="id10">
+			<source ref="id0"/>
+			<target ref="id2"/>
+			<label kind="select" x="204" y="-9">to:int[1,2]</label>
+			<label kind="assignment" x="204" y="8">id_to[u]=(u+to)%3</label>
+		</transition>
+	</template>
+	<system>// Place template instantiations here.
+user1 = User(0);
+user2 = User(1);
+user3 = User(2);
+// List one or more processes to be composed into a system.
+system user1, user2, user3;
+</system>
+	<queries>
+		<query>
+			<formula>A[] not deadlock</formula>
+			<comment/>
+			<result outcome="success" type="quality" timestamp="2024-06-22 22:41:12 +0800">
+			</result>
+		</query>
+		<query>
+			<formula>A[](user_data[0].balance&gt;=0&amp;&amp;user_data[1].balance&gt;=0&amp;&amp;user_data[2].balance&gt;=0)</formula>
+			<comment/>
+			<result outcome="success" type="quality" timestamp="2024-06-22 22:45:04 +0800">
+			</result>
+		</query>
+		<query>
+			<formula>A[](user_data[0].balance+user_data[1].balance+user_data[2].balance==6000)</formula>
+			<comment/>
+			<result outcome="success" type="quality" timestamp="2024-06-22 22:47:11 +0800">
+			</result>
+		</query>
+	</queries>
+</nta>

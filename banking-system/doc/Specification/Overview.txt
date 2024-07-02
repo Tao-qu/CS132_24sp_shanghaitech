@@ -1,0 +1,36 @@
+
+	S1.1 Create Account (create_account@password)
+	S1.2 Close Account (close_account)
+	S1.3 Insert Card (insert_card@id)
+	S1.4 Return Card (return_card)
+	S1.5 Deposit Cash (deposit_cash@num)
+	S1.6 Withdraw Cash (withdraw_cash@num@password)
+	S1.7 Change Password (change_password@new_password)
+	S1.8 Transfer Money (transfer_money@receiver_id@num)
+	S1.9 Query Transactions (query)
+
+	S2.1 Log In (log_in@id@password#app_id)
+	S2.2 Log Out (log_out#app_id)
+	S2.3 Close App (close_app#app_id)
+	S2.4 Change Password (change_password@new_password(#app_id))
+	S2.5 Transfer Money (transfer_money@receiver_id@num(#app_id))
+	S2.6 Query Transactions (query(#app_id))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

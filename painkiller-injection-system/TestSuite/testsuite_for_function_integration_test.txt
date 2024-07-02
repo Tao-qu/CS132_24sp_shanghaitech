@@ -1,0 +1,38 @@
+Case #1: Routine Test
+•	Set baseline to 0.01 ml/min.
+•	Set bolus to 0.30 ml/shot.
+•	Turn baseline on.
+•	(Simulated time: about 30 minutes later) Request bolus (should be successfully injected).
+•	(Simulated time: about 75 minutes later) Request bolus (should not be injected).
+•	Turn baseline off.
+•	Set baseline to 0.10 ml/min.
+•	Turn baseline on.
+•	(Simulated time: about 1-3 minutes later) Baseline injection should trigger the hour limit and stop.
+•	(Simulated time: 10 minutes later) Baseline injections occur every 10 minutes.
+•	(After the day limit is reached) Reach day limit, stop injections.
+
+==========================
+
+Case #2: Maximum Dose Test
+•	Set baseline to 0.10 ml/min.
+•	Set bolus to 0.50 ml/shot.
+•	Turn baseline on.
+•	(Simulated time: about 10 minutes later) Trigger hour limit and stop injections.
+•	Turn baseline off.
+•	(Simulated time: about 70 minutes later) Request bolus (should be successfully injected).
+•	Turn baseline on.
+•	(Simulated time: about 100 minutes later) Request bolus (should not be injected).
+
+==========================
+
+Case #3: Limit and Reset Test
+•	Set baseline to 0.10 ml/min.
+•	Set bolus to 0.50 ml/shot.
+•	(Upon start) Request bolus (should be successfully injected).
+•	Request bolus (should be successfully injected).
+•	Request bolus (should trigger the hour limit and stop injections).
+•	(Simulated time: about 2 hours later) Turn baseline on.
+•	(Simulated time: 10 minutes later) Trigger hour limit and stop injections.
+•	(Simulated time: 70 minutes later) Trigger hour limit and stop injections.
+•	Reset by doctor.
+•	Injection limits should be reset.
